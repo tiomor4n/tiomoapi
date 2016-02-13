@@ -1,0 +1,112 @@
+﻿@model MvcApplication2.Models.InputData
+@{
+    ViewBag.Title = "台股相關歷史資料下載";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta name="description" content="台股相關歷史資料下載" />
+
+    <style>
+   
+    </style>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-63682063-1', 'auto');
+        ga('send', 'pageview');
+
+</script>
+
+</head>
+<body>
+<div id="WRAPPER">
+    <div id="HEADER">
+        <h2>台股相關歷史資料</h2>
+    </div>
+
+    <div id="MAIN_NAV">
+        <ul>
+            <li><a href="http://tiomo.somee.com/TIOMO">個股盤後資料</a></li>
+            <li><a href="http://tiomo.somee.com/Contribute">個股財務資料</a></li>
+            <li><a href="http://tiomo.somee.com/Contribute">期貨盤後資料</a></li>
+            <li><a href="http://tiomo.somee.com/About">About</a></li>
+            <li><a href="http://tiomo.somee.com/TWSPAPI">TWSPAPI</a></li>
+            <li><a href="http://tiomo.somee.com/TWIND">TWIND</a></li>
+        </ul>
+    </div> <!--主選單 --> 
+    
+    <div id="CONTENT">
+    <h2>個股盤後資料</h2>
+        @{ Html.EnableClientValidation(); }
+        @using (Html.BeginForm("Index", "TIOMO", FormMethod.Post))
+        {
+    
+            <!--裡面待會要放TextBox-->
+            <div id="BODY">
+                請輸入股票代碼4碼數字:@Html.TextBoxFor(Model => Model.strStockCode, new { @class = "form-control", @placeholder = "4碼數字" })
+                @Html.ValidationMessageFor(Model => Model.strStockCode)
+            <br/>
+                本功能最多可一次抓取24個月的資料。
+            <br/>
+                請輸入起始日期，格式YYYYMM:@Html.TextBoxFor(Model => Model.strDataDate, new { @class = "form-control", @placeholder = "YYYYMM" })
+                @Html.ValidationMessageFor(Model => Model.strDataDate)
+            <br/>
+                請輸入結束日期，格式YYYYMM:@Html.TextBoxFor(Model => Model.strEndDate, new { @class = "form-control", @placeholder = "YYYYMM" })
+                @Html.ValidationMessageFor(Model => Model.strEndDate)
+            </div>
+          
+          
+        <input type="submit" value="提交" />
+        
+        }
+    <p>
+        @Html.ValidationSummary()
+    </p>
+    
+    
+    <p>
+    <!--<script type="text/javascript" src="http://js1.bloggerads.net/showbanner.aspx?blogid=20150522000021&amp;charset=utf-8"></script>-->
+    </p>
+    <!--
+    <iframe id='bloggerAds1' scrolling='no' frameborder='0' allowtransparency='true' style='height: 150px; width: 890px;'></iframe>
+ 
+    <script>
+        (function () {
+            var a = document.getElementById("bloggerAds1"),
+      b = a.contentDocument || a.contentWindow.document;
+            b.write('<scr' + 'ipt type="text/javascript" src="http://js1.bloggerads.net/showbanner.aspx?blogid=20150522000021&amp;charset=utf-8"></scr' + 'ipt>');
+        })();
+    </script>
+    -->
+    
+
+    </div>
+    
+    <div id="FOOTER">
+        <!-- Site Meter -->
+        <script type="text/javascript" src="http://s30.sitemeter.com/js/counter.js?site=s30TIOMO">
+        </script>
+        <noscript>
+        <a href="http://s30.sitemeter.com/stats.asp?site=s30TIOMO" target="_top">
+        <img src="http://s30.sitemeter.com/meter.asp?site=s30TIOMO" alt="Site Meter" border="0"/></a>
+        </noscript>
+    <!-- Copyright (c)2009 Site Meter -->
+    </div>
+
+
+    <p></p> 
+</div>
+</body>
+</html>
+

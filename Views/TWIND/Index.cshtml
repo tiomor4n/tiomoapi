@@ -1,0 +1,58 @@
+﻿@model MvcApplication2.Models.DatePrompt
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+    <head>
+        <body>
+            <div id="WRAPPER">
+                 <div id="HEADER">
+                     <h2>台股加權指數歷史資料</h2>
+                 </div>
+
+                <div id="MAIN_NAV">
+                    <ul>
+                        <li><a href="http://tiomo.somee.com/TIOMO">個股盤後資料</a></li>
+                        <li><a href="http://tiomo.somee.com/Contribute">個股財務資料</a></li>
+                        <li><a href="http://tiomo.somee.com/Contribute">期貨盤後資料</a></li>
+                        <li><a href="http://tiomo.somee.com/About">About</a></li>
+                        <li><a href="http://tiomo.somee.com/TWSPAPI">TWSPAPI</a></li>
+                        <li><a href="http://tiomo.somee.com/TWIND">TWIND</a></li>
+                    </ul>
+                </div> <!--主選單 --> 
+    
+                <div id="CONTENT">
+                <h2>台股加權指數資料</h2>
+                    @{ Html.EnableClientValidation(); }
+                    @using (Html.BeginForm("Index", "TWIND", FormMethod.Post))
+                    {
+    
+                        <!--裡面待會要放TextBox-->
+                        <div id="BODY">
+                            本功能最多可一次抓取24個月的資料。
+                        <br/>
+                            請輸入起始日期，格式YYYYMM:@Html.TextBoxFor(Model => Model.strDataDate, new { @class = "form-control", @placeholder = "YYYYMM" })
+                            @Html.ValidationMessageFor(Model => Model.strDataDate)
+                        <br/>
+                            請輸入結束日期，格式YYYYMM:@Html.TextBoxFor(Model => Model.strEndDate, new { @class = "form-control", @placeholder = "YYYYMM" })
+                            @Html.ValidationMessageFor(Model => Model.strEndDate)
+                        </div>
+          
+          
+                          <input type="submit" value="提交" />
+        
+                    }
+                <p>
+                    @Html.ValidationSummary()
+                </p>
+
+                </div>
+                <p></p> 
+              </div>
+        </body>
+    </head>
+</html>
+
+
